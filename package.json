@@ -1,0 +1,31 @@
+{
+  "name": "mafengwo-spider",
+  "version": "1.0.0",
+  "description": "mafengwo spider",
+  "dependencies": {
+    "async": "",
+    "mongodb": "^2.0.42",
+    "request": "^2.61.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/golmic/mafengwo-spider.git"
+  },
+  "author": "Golmic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/golmic/mafengwo-spider/issues"
+  },
+  "homepage": "https://github.com/golmic/mafengwo-spider#readme",
+  "keywords": [
+    "蚂蜂窝",
+    "爬虫",
+    "格图",
+    "Nodejs",
+    "spider"
+  ]
+}
