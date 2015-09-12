@@ -1,0 +1,30 @@
+body {
+    background-color: rgba(51, 135, 154, 0.15);
+}
+
+img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+.time {
+    color: rgba(0, 0, 0, 0.46);
+}
+
+.time span {
+    font-style: italic;
+}
+
+.listImg {
+    width: 60%;
+}
+
+a {
+    color: #555;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #000;
+}

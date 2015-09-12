@@ -1,31 +1,45 @@
 {
-  "name": "mafengwo-spider",
-  "version": "1.0.0",
-  "description": "mafengwo spider",
-  "dependencies": {
-    "async": "",
-    "mongodb": "^2.0.42",
-    "request": "^2.61.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/golmic/mafengwo-spider.git"
-  },
-  "author": "Golmic",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/golmic/mafengwo-spider/issues"
-  },
-  "homepage": "https://github.com/golmic/mafengwo-spider#readme",
-  "keywords": [
-    "蚂蜂窝",
-    "爬虫",
-    "格图",
-    "Nodejs",
-    "spider"
-  ]
+    "name": "mafengwo-spider",
+    "version": "1.0.0",
+    "description": "mafengwo spider",
+    "dependencies": {
+        "async": "",
+        "mongodb": "^2.0.42",
+        "request": "^2.61.0",
+        "express": "~4.8.8",
+        "morgan": "~1.3.0",
+        "compression": "~1.0.11",
+        "body-parser": "~1.8.0",
+        "method-override": "~2.2.0",
+        "express-session": "~1.7.6",
+        "ejs": "~1.0.0",
+        "connect-flash": "~0.1.1",
+        "mongoose": "~3.8.15",
+        "passport": "~0.2.1",
+        "passport-local": "~1.0.0",
+        "passport-facebook": "~1.0.3",
+        "passport-twitter": "~1.0.2",
+        "passport-google-oauth": "~0.1.5"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/golmic/mafengwo-spider.git"
+    },
+    "author": "Golmic",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/golmic/mafengwo-spider/issues"
+    },
+    "homepage": "https://github.com/golmic/mafengwo-spider#readme",
+    "keywords": [
+        "蚂蜂窝",
+        "爬虫",
+        "格图",
+        "Nodejs",
+        "spider"
+    ]
 }

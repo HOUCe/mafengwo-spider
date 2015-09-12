@@ -1,0 +1,17 @@
+<!-- The list articles view -->
+<section data-ng-controller="ArticlesController" data-ng-init="find()">
+    <h1>螞蜂窩</h1>
+    <br>
+    <ul>
+        <!-- The list of article -->
+        <li data-ng-repeat="article in articles">
+            <h4><a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title"></a></h4>
+            <p class="time">{{article.created | date:'medium'}}&nbsp;&nbsp;&nbsp;<span>by {{article.creator}}</span></p>
+            <img class="listImg" src="{{article.imageUrl}}">
+            <hr>
+        </li>
+        <div data-ng-hide="!articles || articles.length">
+            正在加載文章列表，請稍候……
+        </div>
+    </ul>
+</section>
