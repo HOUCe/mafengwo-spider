@@ -10,7 +10,7 @@ var maxPageNum = 10,
 for (var i = 1; i <= maxPageNum; i++) {
     pageList[i - 1] = i;
 };
-var insertArticle = function(db, title, content, creator, mp3url, imageUrl, created, callback) {
+var insertArticle = function(db, title, imageUrl, content, creator, mp3url, created, callback) {
     if (!creator) {
         creator = 'golmic';
     };
@@ -26,7 +26,7 @@ var insertArticle = function(db, title, content, creator, mp3url, imageUrl, crea
         "created": created
     }, function(err, result) {
         assert.equal(err, null);
-        console.log(title);
+        /*console.log(title);*/
         callback(result);
     });
 };
@@ -40,36 +40,35 @@ function getArticle(urlNumber) {
         }
     }, function(error, response, data) {
         var title, content, creator, created;
-        /*获取标题*/
-        title = data.match(/<h1.*>\s*.+\s*<\/h1>/).toString().replace(/\s*/g, "").replace(/$/g, "").replace(/\//g, "|").match(/>.+</).toString();
-        title = title.substring(1, title.length - 1);
-        /*如果有背景音乐就获取背景音乐*/
-        if (data.indexOf("music_url") < data.indexOf('music_auto_play')) {
-            mp3url = data.substring(data.indexOf("music_url"), data.indexOf('music_auto_play'));
-        } else {
-            mp3url = data.substring(data.indexOf("music_url"), data.indexOf('is_new_note'));
-        };
-        mp3url = mp3url.match(/http.+\.mp3/);
-        if (mp3url) {
-            mp3url = mp3url.toString();
-            content = '<audio src="' + mp3url + '" autoplay="autoplay" loop="loop"></audio>';
-        };
-        /*获取文章内容，发现有两种类型，分别适配*/
-        if (data.indexOf('a_con_text cont') != -1) {
-            content += data.substring(data.indexOf("a_con_text cont") + 296, data.indexOf('integral') - 12);
-        } else {
-            content += data.substring(data.indexOf("ginfo_kw_hotel") + 16, data.indexOf('vc_total') - 19);
-        };
-        /*移除它给图片定义的父标签宽度以便响应式*/
-        content = content.replace(/width:\d*px/g, "");
-        /*把文中第一張圖片作為在列表中顯示時的圖片*//*有的第一張圖片是表情.....處理一下..*/
-        imageUrl = data.match(/http.*\.(jpeg|png|jpg)"/).toString();
-        imageUrl = imageUrl.substring(0,imageUrl.indexOf('"'));
-        console.log(imageUrl);
-
         MongoClient.connect('mongodb://localhost:27017/mean', function(err, db) {
+            /*获取标题*/
+            title = data.match(/<h1.*>\s*.+\s*<\/h1>/).toString().replace(/\s*/g, "").replace(/$/g, "").replace(/\//g, "|").match(/>.+</).toString();
+            title = title.substring(1, title.length - 1);
+            /*如果有背景音乐就获取背景音乐*/
+            if (data.indexOf("music_url") < data.indexOf('music_auto_play')) {
+                mp3url = data.substring(data.indexOf("music_url"), data.indexOf('music_auto_play'));
+            } else {
+                mp3url = data.substring(data.indexOf("music_url"), data.indexOf('is_new_note'));
+            };
+            mp3url = mp3url.match(/http.+\.mp3/);
+            if (mp3url) {
+                mp3url = mp3url.toString();
+                content = '<audio src="' + mp3url + '" autoplay="autoplay" loop="loop"></audio>';
+            };
+            /*获取文章内容，发现有两种类型，分别适配*/
+            if (data.indexOf('a_con_text cont') != -1) {
+                content += data.substring(data.indexOf("a_con_text cont") + 296, data.indexOf('integral') - 12);
+            } else {
+                content += data.substring(data.indexOf("ginfo_kw_hotel") + 16, data.indexOf('vc_total') - 19);
+            };
+            /*移除它给图片定义的父标签宽度以便响应式*/
+            content = content.replace(/width:\d*px/g, "");
+            /*把文中第一張圖片作為在列表中顯示時的圖片*/
+            /*有的第一張圖片是表情.....處理一下..*/
+            imageUrl = data.match(/http:\/\/file.+\.(jpeg|png|jpg)"/).toString();
+            imageUrl = imageUrl.substring(0, imageUrl.indexOf('"'));
             assert.equal(null, err);
-            insertArticle(db, title, content, creator, mp3url, imageUrl, created, function() {
+            insertArticle(db, title, imageUrl, content, creator, mp3url, created, function() {
                 db.close();
             });
         });

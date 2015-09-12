@@ -7,7 +7,8 @@
         <li data-ng-repeat="article in articles">
             <h4><a data-ng-href="#!/articles/{{article._id}}" data-ng-bind="article.title"></a></h4>
             <p class="time">{{article.created | date:'medium'}}&nbsp;&nbsp;&nbsp;<span>by {{article.creator}}</span></p>
-            <img class="listImg" src="{{article.imageUrl}}">
+            <img class="listImg" data-ng-src="{{article.imageUrl}}"/>
+            <p>{{article.imageUrl}}</p>
             <hr>
         </li>
         <div data-ng-hide="!articles || articles.length">
